@@ -6,8 +6,13 @@
     font-size: 12px;
     padding: 7px 10px 7px 10px;
 
+    transition: color 0.3s ease;
+
     &:focus{
         outline: none;
+    }
+    &:hover{
+        color: darken($color: white, $amount: 10);
     }
 }
 
@@ -17,7 +22,7 @@
     &:disabled{
         background-color:lighten($color: $pryme, $amount: 1)
     }
-    &hover{
+    &:hover{
         background-color: darken($color: $pryme, $amount: 15)
     }
 }

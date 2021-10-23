@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const RegisterDes = () => {
+export const WelcomScreen = () => {
     return (
         <div>
-            <h1>Hola</h1>
+            
         </div>
     )
 }

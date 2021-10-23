@@ -79,4 +79,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Adoo_Proy
 # Adoo_Proy
 # ADOO
-# IS

@@ -1,0 +1,70 @@
+
+.proyect__main-content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.proy__appbar{
+    align-items:center;
+    background-color: lighten($color: $pryme, $amount: 5%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px 10px 20px;
+}
+
+.proyecto__content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+.input{
+    
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    &:focus{
+        outline: none;
+    }
+}
+
+.proyect__title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+
+}
+
+.proyect__phone, .proyect__email, .proyect__textarea, .proyect__select,.proyect__aggre{
+    font-size: 20px;
+    font-weight: 700;
+
+}
+
+
+
+.proyect__textarea{
+    flex: 1 1 auto;
+    border: 1px solid black;
+    color: $base;
+    resize: none;
+
+}
+
+.proyect__images img{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    height: 50%;
+    width: 60%;
+}
+
+.proyect__select{
+    margin-top: 15px;
+    margin-bottom: 30px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    display: flex;
+}
