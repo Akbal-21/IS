@@ -2,12 +2,14 @@ import React from "react";
 import { Container, Navbar, NavDropdown, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-export const Navba = () => {
+export const Nav1 = () => {
   return (
     <div>
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container>
-          <Navbar.Brand>Cafeteria</Navbar.Brand>
+          <Navbar.Brand>
+            Cafeteria
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -31,17 +33,8 @@ export const Navba = () => {
                   Sobre nosotros
                 </NavLink>
               </Nav.Link>
-              <NavDropdown title="Menu" id="basic-nav-dropdown">
-                <NavDropdown.Item>
-                  <NavLink
-                    activeClassName="active"
-                    //className="navbar-brand"
-                    exact
-                    to="/menu"
-                  >
-                    Comida
-                  </NavLink>
-                </NavDropdown.Item>
+              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
                 </NavDropdown.Item>
@@ -58,7 +51,7 @@ export const Navba = () => {
                   activeClassName="active"
                   className="navbar-brand"
                   exact
-                  to="/contact"
+                  to="/welcom"
                 >
                   Contacto
                 </NavLink>
@@ -71,7 +64,7 @@ export const Navba = () => {
                 exact
                 to="/login"
               >
-                Login
+                Logout
               </NavLink>
             </Navbar.Text>
           </Navbar.Collapse>

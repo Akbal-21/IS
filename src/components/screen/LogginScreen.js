@@ -12,7 +12,7 @@ export const LogginScreen = ({history}) => {
             <h1>LogginScreen</h1>
             <hr/>
             <Button
-                variant="primary"
+                variant="success"
                 onClick={hadleLogin}
             >
                 Login
