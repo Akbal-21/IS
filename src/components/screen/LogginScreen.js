@@ -1,9 +1,22 @@
 import React from 'react'
+import {Button} from 'react-bootstrap'
 
-export const LogginScreen = () => {
+export const LogginScreen = ({history}) => {
+
+    const hadleLogin =() => {
+        history.replace('/')
+    }
+
     return (
-        <div>
-            
+        <div className="container mt-5">
+            <h1>LogginScreen</h1>
+            <hr/>
+            <Button
+                variant="primary"
+                onClick={hadleLogin}
+            >
+                Login
+            </Button>
         </div>
     )
 }

@@ -1,17 +1,38 @@
 import React from "react";
-import { Container, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Navbar, NavDropdown, Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
-export const Nav = () => {
+export const Navba = () => {
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" expand="lg" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand>
+            Cafeteria
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link>
+                <NavLink
+                  activeClassName="active"
+                  className="navbar-brand"
+                  exact
+                  to="/welcom"
+                >
+                  Bienvenido
+                </NavLink>
+              </Nav.Link>
+              <Nav.Link>
+                <NavLink
+                  activeClassName="active"
+                  className="navbar-brand"
+                  exact
+                  to="/about"
+                >
+                  Sobre nosotros
+                </NavLink>
+              </Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -25,7 +46,27 @@ export const Nav = () => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link>
+                <NavLink
+                  activeClassName="active"
+                  className="navbar-brand"
+                  exact
+                  to="/welcom"
+                >
+                  Contacto
+                </NavLink>
+              </Nav.Link>
             </Nav>
+            <Navbar.Text>
+              <NavLink
+                activeClassName="active"
+                className="nav-item nav-link"
+                exact
+                to="/login"
+              >
+                Login
+              </NavLink>
+            </Navbar.Text>
           </Navbar.Collapse>
         </Container>
       </Navbar>
