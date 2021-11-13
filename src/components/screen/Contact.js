@@ -1,4 +1,3 @@
-import { height } from "dom-helpers";
 import React from "react";
 import { Card } from "react-bootstrap";
 

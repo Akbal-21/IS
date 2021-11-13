@@ -1,15 +1,32 @@
-import React from "react";
-import { Container, Navbar, NavDropdown, Nav } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Container, Navbar, NavDropdown, Nav, Button } from "react-bootstrap";
+import { NavLink, useHistory } from "react-router-dom";
+import { types } from "../../types/types";
+import { AuthContext } from "../auth/AuthContext";
 
 export const Nav1 = () => {
+  const {
+    user: { name },
+    dispatch,
+  } = useContext(AuthContext);
+
+  const history = useHistory();
+
+  const handleLogout = () => {
+
+      history.replace('/auth/welcome');
+
+      dispatch({
+          type: types.logout
+      });
+  }
+
+
   return (
     <div>
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container>
-          <Navbar.Brand>
-            Cafeteria
-          </Navbar.Brand>
+          <Navbar.Brand>Cafeteria</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -51,21 +68,17 @@ export const Nav1 = () => {
                   activeClassName="active"
                   className="navbar-brand"
                   exact
-                  to="/welcom"
+                  to="/contact"
                 >
                   Contacto
                 </NavLink>
               </Nav.Link>
             </Nav>
             <Navbar.Text>
-              <NavLink
-                activeClassName="active"
-                className="nav-item nav-link"
-                exact
-                to="/login"
-              >
+              <span className="nav-item nav-link text-info">{name}</span>
+              <Button className="nav-item nav-link btn" onClick={handleLogout}>
                 Logout
-              </NavLink>
+              </Button>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>

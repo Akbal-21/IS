@@ -16,7 +16,7 @@ export const Navba = () => {
                   activeClassName="active"
                   className="navbar-brand"
                   exact
-                  to="/welcom"
+                  to="/auth/welcome"
                 >
                   Bienvenido
                 </NavLink>
@@ -26,7 +26,7 @@ export const Navba = () => {
                   activeClassName="active"
                   className="navbar-brand"
                   exact
-                  to="/about"
+                  to="/auth/about"
                 >
                   Sobre nosotros
                 </NavLink>
@@ -37,7 +37,7 @@ export const Navba = () => {
                     activeClassName="active"
                     //className="navbar-brand"
                     exact
-                    to="/menu"
+                    to="/auth/menu"
                   >
                     Comida
                   </NavLink>
@@ -58,7 +58,7 @@ export const Navba = () => {
                   activeClassName="active"
                   className="navbar-brand"
                   exact
-                  to="/contact"
+                  to="/auth/contact"
                 >
                   Contacto
                 </NavLink>
@@ -69,7 +69,7 @@ export const Navba = () => {
                 activeClassName="active"
                 className="nav-item nav-link"
                 exact
-                to="/login"
+                to="/auth/login"
               >
                 Login
               </NavLink>
