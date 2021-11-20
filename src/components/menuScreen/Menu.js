@@ -16,7 +16,7 @@ export const Menu = () => {
 
   return (
     <div className="mt-3">
-      <ListMenu proc={proc}/>
+      <ListMenu proc={proc} />
     </div>
   );
 };

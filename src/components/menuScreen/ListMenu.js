@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardGroup, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Card, CardGroup } from "react-bootstrap";
 
 export const ListMenu = ({ proc }) => {
   console.log({ proc });

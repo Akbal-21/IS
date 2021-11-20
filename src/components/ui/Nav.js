@@ -6,8 +6,13 @@ export const Navba = () => {
   return (
     <div>
       <Navbar bg="dark" expand="lg" variant="dark">
+        <Navbar bg="light">
+          <Container>
+          <Navbar.Brand href="https://imgur.com/8hsgSXu">Brand link</Navbar.Brand>
+          </Container>
+        </Navbar>
         <Container>
-          <Navbar.Brand>Cafeteria</Navbar.Brand>
+          <Navbar.Brand>ESCOMIDA</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
