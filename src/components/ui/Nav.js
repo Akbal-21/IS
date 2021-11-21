@@ -8,7 +8,7 @@ export const Navba = () => {
       <Navbar bg="dark" expand="lg" variant="dark">
         <Navbar bg="light">
           <Container>
-          <Navbar.Brand href="https://imgur.com/8hsgSXu">Brand link</Navbar.Brand>
+          <img src="https://imgur.com/8hsgSXu"/>
           </Container>
         </Navbar>
         <Container>

@@ -19,14 +19,12 @@ export const RegScreen = ({ user, setuser }) => {
             alert('Todos loscampos tienen que ser llenados')
             return
         } else {
-            //const 
+            //
             const requestInit = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(user),
             }
-
-            console.log('ok 1')
 
             fetch("http://localhost:9000/api/user/", requestInit)
                 .then(res => res.json())
