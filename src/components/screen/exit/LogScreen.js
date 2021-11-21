@@ -1,63 +1,43 @@
-import React, { useContext } from 'react'
+import Axios from 'axios';
+import React, { useContext, useState } from 'react'
 import { types } from '../../../types/types';
 import { AuthContext } from '../../auth/AuthContext';
 
 
 
-export const LogScreen = ({ roll, setroll, history }) => {
+
+export const LogScreen = ({ history }) => {
 
     const { dispatch } = useContext(AuthContext);
 
-    const hadleLogin = () => {
-        dispatch({
-            type: types.login,
-            payload: {
-                name: roll.Nombre,
-            },
-        });
-        history.replace("/");
-    };
-    const handleChange = (e) => {
-        setroll({
-            ...roll,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const { correo, pws } = roll
+    const [correolog, setcorreo] = useState("")
+    const [pwslog, setpws] = useState("")
 
     const handleSubmit = () => {
 
         //validacion
 
-        if (correo === '' || pws === '') {
+        if (correolog === '' || pwslog === '') {
             alert('Todos loscampos tienen que ser llenados')
             return
-        } else {
-            //
-            const requestInit = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(roll),
-            }
-
-            fetch("http://localhost:9000/api/user1/", requestInit)
-                .then(res => res.json())
-                .then(res => console.log(res));
-
-            setroll({
-                correo: '',
-                pws: ''
-            });
-
-
-            hadleLogin ();
-
         }
+        Axios.post("http://localhost:9000/api/user1/", {
+            psw: pwslog,
+            correo: correolog,
+        }).then((res) => {
+            console.log(res)
+            dispatch({
+                type: types.login,
+                payload: {
+                    name: "Fernando",
+                },
+            });
+            history.replace("/");
+        })
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <>
             <div className="container mt-5" style={{ textAlign: "center" }}>
                 <h1>LogginScreen</h1>
                 <hr />
@@ -68,7 +48,9 @@ export const LogScreen = ({ roll, setroll, history }) => {
                         className="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default"
-                        name='correo' onChange={handleChange}
+                        onChange={(e) => {
+                            setcorreo(e.target.value);
+                        }}
                     />
                 </div>
 
@@ -78,14 +60,16 @@ export const LogScreen = ({ roll, setroll, history }) => {
                         className="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default"
-                        name='pws' onChange={handleChange}
+                        onChange={(e) => {
+                            setpws(e.target.value);
+                        }}
                     />
                 </div>
 
-                <button className='btn btn-prime btn-block' type='submit'>
+                <button className='btn btn-prime btn-block' onClick={handleSubmit}>
                     Login
                 </button>
             </div>
-        </form>
+        </>
     )
 }

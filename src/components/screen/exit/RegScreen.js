@@ -1,49 +1,39 @@
-import React from 'react'
+import Axios from 'axios'
+import React, { useState } from 'react'
 
-export const RegScreen = ({ user, setuser }) => {
+export const RegScreen = () => {
 
-    const handleChange = (e) => {
-        setuser({
-            ...user,
-            [e.target.name]: e.target.value
-        })
-    }
 
-    const { Nombre, ApMat, ApPat, correo, pws } = user
+
+    const [NombreReg, setNombre] = useState("")
+    const [ApMatReg, setApMAt] = useState("")
+    const [ApPatReg, setApPat] = useState("")
+    const [correoReg, setcorreo] = useState("")
+    const [pswReg, setpws] = useState("")
+    const [rollReg, setroll] = useState(2)
 
     const handleSubmit = () => {
 
         //validacion
 
-        if (Nombre === '' || ApMat === '' || ApPat === '' || correo === '' || pws === '') {
+        if (setNombre === '' || setApMAt === '' || setApPat === '' || setcorreo === '' || setpws === '') {
             alert('Todos loscampos tienen que ser llenados')
             return
-        } else {
-            //
-            const requestInit = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(user),
-            }
-
-            fetch("http://localhost:9000/api/user/", requestInit)
-                .then(res => res.json())
-                .then(res => console.log(res));
-
-
-            setuser({
-                Nombre: '',
-                ApMat: '',
-                ApPat: '',
-                correo: '',
-                pws: '',
-                roll: 2,
-            })
         }
+        Axios.post("http://localhost:9000/api/user/", {
+            Nombre: NombreReg,
+            ApMat: ApMatReg,
+            ApPat: ApPatReg,
+            psw: pswReg,
+            correo: correoReg,
+            roll: rollReg
+        }).then((res) => {
+            console.log(res)
+        })
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        < >
             <div className="container mt-5" style={{ textAlign: "center" }}>
                 <h1>Registro</h1>
                 <hr />
@@ -55,7 +45,9 @@ export const RegScreen = ({ user, setuser }) => {
                         className="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default"
-                        name='Nombre' onChange={handleChange}
+                        onChange={(e) => {
+                            setNombre(e.target.value);
+                        }}
                     />
                 </div>
 
@@ -65,7 +57,9 @@ export const RegScreen = ({ user, setuser }) => {
                         className="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default"
-                        name='ApPat' onChange={handleChange}
+                        onChange={(e) => {
+                            setApMAt(e.target.value);
+                        }}
                     />
                 </div>
 
@@ -75,7 +69,9 @@ export const RegScreen = ({ user, setuser }) => {
                         className="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default"
-                        name='ApMat' onChange={handleChange}
+                        onChange={(e) => {
+                            setApPat(e.target.value);
+                        }}
                     />
                 </div>
 
@@ -85,7 +81,9 @@ export const RegScreen = ({ user, setuser }) => {
                         className="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default"
-                        name='correo' onChange={handleChange}
+                        onChange={(e) => {
+                            setcorreo(e.target.value);
+                        }}
                     />
                 </div>
 
@@ -95,14 +93,16 @@ export const RegScreen = ({ user, setuser }) => {
                         className="form-control"
                         aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-default"
-                        name='pws' onChange={handleChange}
+                        onChange={(e) => {
+                            setpws(e.target.value);
+                        }}
                     />
                 </div>
 
-                <button type="submit" className='btn btn-prime btn-block'>
+                <button onClick={handleSubmit} className='btn btn-prime btn-block'>
                     Register
                 </button>
             </div>
-        </form>
+        </>
     )
 }
