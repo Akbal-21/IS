@@ -5,14 +5,11 @@ import { NavLink } from "react-router-dom";
 export const Navba = () => {
   return (
     <div>
-      <Navbar bg="dark" expand="lg" variant="dark">
-        <Navbar bg="light">
-          <Container>
-          <img src="https://imgur.com/8hsgSXu"/>
-          </Container>
-        </Navbar>
+      <Navbar bg="dark" expand="lg" variant="#006699">
         <Container>
-          <Navbar.Brand>ESCOMIDA</Navbar.Brand>
+          <Navbar.Brand>
+            <img src="https://i.ibb.co/zx3Vyzw/ESCOM-barra-final.png" alt="escom" border="0" sizes={{ width: 14 }} />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -40,15 +37,20 @@ export const Navba = () => {
                 <NavDropdown.Item>
                   <NavLink
                     activeClassName="active"
-                    //className="navbar-brand"
                     exact
                     to="/auth/menu"
                   >
                     Comida
                   </NavLink>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
+                <NavDropdown.Item>
+                  <NavLink
+                    activeClassName="active"
+                    exact
+                    to="/auth/search"
+                  >
+                    Busqueda
+                  </NavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">
                   Something

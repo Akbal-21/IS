@@ -7,7 +7,7 @@ import { AuthContext } from "../auth/AuthContext";
 export const Nav1 = () => {
   const {
     user: { name },
-    dispatch,
+    dispatch
   } = useContext(AuthContext);
 
   const history = useHistory();
