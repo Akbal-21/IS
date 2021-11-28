@@ -1,0 +1,11 @@
+
+
+.cart__click{
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    &hover{
+        color: darken($color: #ffff, $amount: 20);
+    }
+}

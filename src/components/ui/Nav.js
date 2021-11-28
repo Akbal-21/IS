@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export const Navba = () => {
   return (
     <div>
-      <Navbar bg="dark" expand="lg" variant="#006699">
+      <Navbar bg="dark" expand="lg" variant="dark">
         <Container>
           <Navbar.Brand>
             <img src="https://i.ibb.co/zx3Vyzw/ESCOM-barra-final.png" alt="escom" border="0" sizes={{ width: 14 }} />

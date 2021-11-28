@@ -4,6 +4,7 @@ import Axios from 'axios';
 import { RegScreen } from "./exit/RegScreen";
 import { AuthContext } from '../auth/AuthContext';
 import Swal from "sweetalert2";
+import { FormControl, InputGroup } from 'react-bootstrap';
 
 export const LogginScreen = ({ history }) => {
 
@@ -25,7 +26,6 @@ export const LogginScreen = ({ history }) => {
       pws: pwslog
     })
       .then(res => {
-        console.log(res.data[0])
         dispatch({
           type: types.login,
           payload: {
@@ -37,7 +37,6 @@ export const LogginScreen = ({ history }) => {
       })
       .catch(err => {
         Swal.fire('Error', 'Usuario o contraseña incorrecto', 'error')
-        console.log(err)
       })
   }
 
@@ -49,29 +48,29 @@ export const LogginScreen = ({ history }) => {
             <h1>LogginScreen</h1>
             <hr />
 
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="idCorreo">Correo</span>
-              <input type="text"
-                className="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="idCorreo">Correo</InputGroup.Text>
+              <FormControl
+                aria-label="correo"
+                aria-describedby="ingresa correo"
                 onChange={(e) => {
                   setcorreo(e.target.value);
                 }}
               />
-            </div>
+            </InputGroup>
 
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="idApPat">Contraseña</span>
-              <input type="password"
-                className="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
+
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="idContraseña">Contraseña</InputGroup.Text>
+              <FormControl
+                aria-label="Contraseña"
+                aria-describedby="ingresa Contraseña"
+                type='password'
                 onChange={(e) => {
                   setpws(e.target.value);
                 }}
               />
-            </div>
+            </InputGroup>
 
             <button className='btn btn-prime btn-block' onClick={handleSubmit}>
               Login
