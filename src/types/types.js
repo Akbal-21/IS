@@ -9,5 +9,4 @@ export const types ={
     REMOVE_ALL: 'REMOVE_ALL',
     CLEAR: 'CLEAR_CATR'
 
-
 } 

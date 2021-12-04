@@ -13,7 +13,7 @@ export const LogginScreen = ({ history }) => {
   const [correolog, setcorreo] = useState("")
   const [pwslog, setpws] = useState("")
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
 
     //validacion
 

@@ -34,7 +34,7 @@ export const Busquedalog = () => {
                         <div className="container mt-5" style={{ textAlign: "center" }}>
                             <input type="text"
                                 className="form-control"
-                                placeholder="Choholate"
+                                placeholder="Chocholate"
                                 aria-label="choholate"
                                 aria-describedby="button-addon2"
                                 value={producto}
