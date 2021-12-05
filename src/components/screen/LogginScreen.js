@@ -26,11 +26,15 @@ export const LogginScreen = ({ history }) => {
       pws: pwslog
     })
       .then(res => {
+        console.log(res.data[0]);
+
         dispatch({
           type: types.login,
           payload: {
+            
             name: res.data[0].Nombre,
-            roll: res.data[0].roll
+            roll: res.data[0].roll,
+            idUsuario: res.data[0].id
           },
         });
         history.replace("/");
