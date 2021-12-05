@@ -5,6 +5,7 @@ export const types ={
 
     //CART
     Add_CART: 'ADD_TO_CART',
+    Add_Another_CART: 'ADD_Another_in_CART',
     REMOVE_ONE: 'REMOVEONE',
     REMOVE_ALL: 'REMOVE_ALL',
     CLEAR: 'CLEAR_CATR'

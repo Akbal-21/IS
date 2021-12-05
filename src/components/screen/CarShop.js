@@ -4,6 +4,7 @@ import Axios from 'axios';
 import { AuthContext } from '../auth/AuthContext';
 import { CartReduce } from '../../reducers/CartReducer';
 import { types } from '../../types/types';
+import { AddToCart, popFromCart } from '../menuScreen/logMenu/addCart';
 
 export const CarShop = () => {
     const [proc, setproc] = useState([]);
@@ -25,15 +26,19 @@ export const CarShop = () => {
           .catch(err => {
             console.log(err)
           })
+          
       }, []);
     
     const eliminarProducto=(idProducto)=>{
-      //console.log({state:idProducto});
-      //console.log({action:types.REMOVE_ONE});
-      CartReduce({state:{idProducto,idUsuario}},{type:types.REMOVE_ALL});
-      //CartReduce({...idProducto,...idUsuario},types.REMOVE_ONE);
       
+      CartReduce({state:{idProducto,idUsuario}},{type:types.REMOVE_ALL});
+      let newItem =  proc.find(proc=>proc.idProducto === idProducto);
+      console.log(newItem);
     };
+
+    const eliminarCarrito=()=>{
+      CartReduce({state:{idUsuario}},{type:types.CLEAR});
+    }
     return (
         <div>
             <Table striped bordered hover variant="dark">
@@ -55,7 +60,13 @@ export const CarShop = () => {
                   <td><img src={pro.imgPath} style={{width: '33%'}}/></td>
                   <td>{pro.Nombre}</td>
                   
-                  <td>{pro.cantidad}</td>
+                  <td>{pro.cantidad}<button onClick={()=>AddToCart(
+                    idUsuario,
+                    pro.idProducto
+                  )}>+</button><button onClick={()=>popFromCart(
+                    idUsuario,
+                    pro.idProducto
+                  )}>-</button></td>
                   <td>${pro.precio}</td>
                   
                   <td>${pro.precio * pro.cantidad}</td>
@@ -64,7 +75,7 @@ export const CarShop = () => {
                 
                 ))}
                 <button >Comprar</button>
-                <button>Eliminar Carrito</button>
+                <button onClick={() => eliminarCarrito()}>Eliminar Carrito</button>
               </tbody>
             </Table>
 

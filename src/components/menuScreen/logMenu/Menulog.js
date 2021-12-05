@@ -1,11 +1,19 @@
 import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, useReducer } from "react";
 import { Card, CardGroup } from "react-bootstrap";
+import { AddToCart } from "./addCart";
+import { AuthContext } from "../../auth/AuthContext";
+import { CartReduce } from "../../../reducers/CartReducer";
+import { types } from "joi";
 
 
 export const Menulog = () => {
   const [proc, setproc] = useState([]);
-
+  const {
+    user: { idUsuario },
+    dispatch
+  } = useContext(AuthContext);
+  const us = {idUsuario};
   useEffect(() => {
     Axios.get('http://localhost:9000/producto/')
       .then(res => {
@@ -15,7 +23,9 @@ export const Menulog = () => {
         console.log(err)
       })
   }, [])
+  
 
+  
 
   return (
     <div className="mt-3">
@@ -38,7 +48,7 @@ export const Menulog = () => {
                   </Card.Text>
                 </Card.Body>
                 <Card.Body>
-                  <button className='btn btn-green btn-block' >Agregar al carrito</button>
+                  <button className='btn btn-green btn-block' onClick={()=>AddToCart(us.idUsuario,pro.idProducto)} >Agregar al carrito</button>
                 </Card.Body>
               </Card>
             </div>

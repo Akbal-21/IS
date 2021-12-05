@@ -1,7 +1,8 @@
 import Axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import { Card, CardGroup } from 'react-bootstrap'
-
+import { AddToCart } from './addCart'
+import { AuthContext } from '../../auth/AuthContext'
 
 export const Busquedalog = () => {
 
@@ -10,7 +11,11 @@ export const Busquedalog = () => {
 
     //const [car, setcar] = useState([])
 
-
+    const {
+        user: { idUsuario },
+        dispatch
+    } = useContext(AuthContext);
+    const us = {idUsuario};
     const handleSubmit = async () => {
         Axios.post('http://localhost:9000/producto/search/',
             { search: producto }
@@ -34,8 +39,8 @@ export const Busquedalog = () => {
                         <div className="container mt-5" style={{ textAlign: "center" }}>
                             <input type="text"
                                 className="form-control"
-                                placeholder="Chocholate"
-                                aria-label="choholate"
+                                placeholder="Chocolate"
+                                aria-label="chocolate"
                                 aria-describedby="button-addon2"
                                 value={producto}
                                 onChange={(e) => {
@@ -66,7 +71,7 @@ export const Busquedalog = () => {
                                                         </Card.Text>
                                                     </Card.Body>
                                                     <Card.Body>
-                                                        <button className='btn btn-green btn-block'>Agregar al carrito</button>
+                                                        <button className='btn btn-green btn-block' onClick={()=>AddToCart(us.idUsuario,pro.idProducto)}>Agregar al carrito</button>
                                                     </Card.Body>
                                                 </Card>
                                             </div>
