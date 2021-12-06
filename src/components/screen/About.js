@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 export const About = () => {
   return (
     <div align="center">
-      <h1>Abouth</h1>
+      <h1>A cerca de nosotros...</h1>
       <hr />
       <Card
         bg="dark"
@@ -15,7 +15,7 @@ export const About = () => {
       >
         <Card.Body>
           <Card.Title> ¿Que somos? </Card.Title>
-          <Card.Text>Nosotros somos la cafeteria de escom la cual brindamos el serviocio de comida en la escuela</Card.Text>
+          <Card.Text>Nosotros somos una cafeteria ubicada en la Escuela Superior Computo ofreciendo nuestros productos y servicios a dicha comunidad</Card.Text>
         </Card.Body>
       </Card>
 
@@ -28,7 +28,7 @@ export const About = () => {
       >
         <Card.Body>
           <Card.Title> Mision </Card.Title>
-          <Card.Text>Brindar el mejor servicio de comida a los estudiantes de la ESCOM danod como resultado un servicio de calidad</Card.Text>
+          <Card.Text>Brindar el mejor servicio de comida a los estudiantes de la ESCOM dando como resultado un servicio de calidad</Card.Text>
         </Card.Body>
       </Card>
     </div>

@@ -9,6 +9,15 @@
         color: darken($color: #ffff, $amount: 20);
     }
 }
-.imagenCarro{
-    width: 50px;
+
+
+
+.cart_img{
+    width: 100%;
 }
+
+.cart_cell{
+    width: 200px;
+    align-items: center;
+}
+

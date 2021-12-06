@@ -1,3 +1,5 @@
+
+
 .btn {
     background-color:transparent;
     border: none;
@@ -15,6 +17,76 @@
         color: darken($color: white, $amount: 10);
     }
 }
+
+.btn_cant_cart {
+    border-color: $grey;
+    color: $white;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 7px 10px 7px 10px;
+    border-radius: 4px;
+    transition: color 0.3s ease;
+
+    background-color:$black;
+    
+    width : 30%;
+    height : 100%;
+
+    &:hover{
+        border-color:transparent;
+        color: $white;
+        background-color: $grey;
+        
+
+    }
+}
+
+.btn_cart {
+    border-color: $grey;
+    color: $white;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 7px 10px 7px 10px;
+    border-radius: 4px;
+    transition: color 0.3s ease;
+
+    background-color:$black;
+    
+    width : 100%;
+    height : 100%;
+
+    &:hover{
+        border-color:transparent;
+        color: $white;
+        background-color: $grey;
+        
+
+    }
+}
+
+.btn_elim_cart{
+    border-color: $red;
+    color: $white;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 7px 10px 7px 10px;
+    border-radius: 4px;
+    transition: color 0.3s ease;
+
+    background-color: $black;
+    width : 100%;
+    height : 100%;
+    &:hover{
+        border-color:transparent;
+        color: $white;
+        background-color: $red
+    
+
+    }
+
+}
+
+
 
 .btn-prime{
     background-color: $pryme;
