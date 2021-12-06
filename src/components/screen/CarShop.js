@@ -4,7 +4,7 @@ import Axios from 'axios';
 import { AuthContext } from '../auth/AuthContext';
 import { CartReduce } from '../../reducers/CartReducer';
 import { types } from '../../types/types';
-import { AddToCart, popFromCart } from '../menuScreen/logMenu/addCart';
+
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
@@ -54,17 +54,45 @@ export const CarShop = () => {
 
 
 
-      }, []);
+    }, []);
     
     const eliminarProducto=(idProducto)=>{
       
       CartReduce({state:{idProducto,idUsuario}},{type:types.REMOVE_ALL});
-      let newItem =  proc.find(proc=>proc.idProducto === idProducto);
-      console.log(newItem);
+      
+      setproc(proc.filter((item) => item.idProducto !== idProducto));
     };
 
     const eliminarCarrito=()=>{
-      CartReduce({state:{idUsuario}},{type:types.CLEAR});
+      
+      Swal.fire({
+        title: '¿Eliminar el carrito?',
+        text: "Tu carrito se vaciara",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Confirmar!',
+        cancelButtonText: '¡Cancelar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          history.push("/menu");
+          Swal.fire({
+            
+            icon: 'success',
+            title: 'Carrito eliminado',
+            showConfirmButton: false,
+            timer: 2000
+          })
+
+          
+        
+          CartReduce({state:{idUsuario}},{type:types.CLEAR});
+
+
+        }
+      })
+
     }
     const comprarCarrito=()=>{
       
@@ -98,8 +126,70 @@ export const CarShop = () => {
       
     }
 
+    const AddToCart = (idUs,idPro) =>{
     
+      Axios.post('http://localhost:9000/cart/count/',{idUsuario: idUs,idProducto: idPro })
+          
+          .then(res => {
+              
+              if(res.data.length == 0){
+                  
+                  CartReduce({state:{idPro,idUs}},{type: types.Add_CART});
+              }else{
+                  const cantidad = res.data[0].cantidad +1;
+                  
+                  CartReduce({state:{idPro,idUs,cantidad}},{type: types.Add_Another_CART});
+                  let arreglo =[];
+                  proc.forEach((item)=>{
+                    if(item.idProducto === idPro){
+                      item.cantidad = item.cantidad +1;
+                    }
+                    arreglo.push(item);
+                  });
+                  setproc(arreglo);
+              }
+              
+            })
+            .catch(err => {
+              console.log(err)
+            });
+    }
     
+    const popFromCart = (idUs,idPro) => {
+      Axios.post('http://localhost:9000/cart/count/',{idUsuario: idUs,idProducto: idPro })
+          
+          .then(res => {
+              
+              if(res.data.length == 0){
+                  console.log("ningun item en el carro");
+                  
+              }else{
+                  const cantidad = res.data[0].cantidad -1;
+                  const idUsuario = idUs;
+                  const idProducto = idPro;
+                  if(res.data[0].cantidad === 1){
+                      CartReduce({state:{idProducto,idUsuario,cantidad}},{type: types.REMOVE_ALL});
+                      setproc(proc.filter((item) => item.idProducto !== idPro));
+                  }else{
+                      CartReduce({state:{idPro,idUs,cantidad}},{type: types.REMOVE_ONE});
+                      let newprocs=[];
+                      proc.forEach((it) =>{
+                        if(it.idProducto === idPro){
+                          it.cantidad = it.cantidad -1;
+                        }
+                        newprocs.push(it);
+                      });
+                      setproc(newprocs);
+                  }
+                  
+              }
+              
+            })
+            .catch(err => {
+              console.log(err)
+            });
+    }
+
     return (
         <div>
             <Table responsive striped bordered hover variant="dark">
@@ -131,9 +221,9 @@ export const CarShop = () => {
                   <td>
                     <div align="center">
                       <button className="btn_cant_cart" onClick={()=>popFromCart(
-                      idUsuario,
-                      pro.idProducto
-                    )}>-</button>  {pro.cantidad}  <button className="btn_cant_cart" onClick={()=>AddToCart(
+                        idUsuario,
+                        pro.idProducto
+                      )}>-</button>  {pro.cantidad}  <button className="btn_cant_cart" onClick={()=>AddToCart(
                       idUsuario,
                       pro.idProducto
                     )}>+</button>
@@ -156,7 +246,7 @@ export const CarShop = () => {
                   <td colspan="6" align="center">
                     <div className="row">
                       <div className="col-6">
-                        <button className="btn_cart" btn_cant_cartonClick={() => eliminarCarrito()}>Eliminar Carrito</button>
+                        <button className="btn_cart" onClick={() => eliminarCarrito()}>Eliminar Carrito</button>
                       </div>
                       <div  className="col-6">
                         <button className="btn_cart" onClick={() => comprarCarrito()}>Comprar</button>

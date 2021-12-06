@@ -2,7 +2,7 @@ import Axios from "axios";
 //import { useReducer } from "react";
 import { CartReduce } from "../../../reducers/CartReducer";
 import { types } from "../../../types/types";
-
+import Swal from "sweetalert2";
 
 export function AddToCart(idUs,idPro){
     
@@ -13,11 +13,19 @@ export function AddToCart(idUs,idPro){
             if(res.data.length == 0){
                 
                 CartReduce({state:{idPro,idUs}},{type: types.Add_CART});
+                
             }else{
                 const cantidad = res.data[0].cantidad +1;
                 
                 CartReduce({state:{idPro,idUs,cantidad}},{type: types.Add_Another_CART});
             }
+            Swal.fire({
+            
+                icon: 'success',
+                title: 'Producto agregado',
+                showConfirmButton: false,
+                timer: 1000
+            })
             
           })
           .catch(err => {
