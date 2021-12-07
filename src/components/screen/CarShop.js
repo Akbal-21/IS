@@ -50,17 +50,21 @@ export const CarShop = () => {
           console.log(err)
         })
         console.log(proc)
-
-
-
-
+        
     }, []);
     
     const eliminarProducto=(idProducto)=>{
       
       CartReduce({state:{idProducto,idUsuario}},{type:types.REMOVE_ALL});
+      const nwProc = proc.filter((item) => item.idProducto !== idProducto);
+      setproc(nwProc);
+      setstate(nwProc.reduce((prev, next) => prev + (next.precio * next.cantidad), 0));
       
-      setproc(proc.filter((item) => item.idProducto !== idProducto));
+
+        
+      
+      
+      
     };
 
     const eliminarCarrito=()=>{
@@ -135,6 +139,7 @@ export const CarShop = () => {
               if(res.data.length == 0){
                   
                   CartReduce({state:{idPro,idUs}},{type: types.Add_CART});
+                  setstate(proc.reduce((prev, next) => prev + (next.precio * next.cantidad), 0));
               }else{
                   const cantidad = res.data[0].cantidad +1;
                   
@@ -147,12 +152,15 @@ export const CarShop = () => {
                     arreglo.push(item);
                   });
                   setproc(arreglo);
+                  setstate(proc.reduce((prev, next) => prev + (next.precio * next.cantidad), 0));
               }
               
             })
             .catch(err => {
               console.log(err)
             });
+            
+            
     }
     
     const popFromCart = (idUs,idPro) => {
@@ -170,6 +178,7 @@ export const CarShop = () => {
                   if(res.data[0].cantidad === 1){
                       CartReduce({state:{idProducto,idUsuario,cantidad}},{type: types.REMOVE_ALL});
                       setproc(proc.filter((item) => item.idProducto !== idPro));
+                      setstate(proc.reduce((prev, next) => prev + (next.precio * next.cantidad), 0));
                   }else{
                       CartReduce({state:{idPro,idUs,cantidad}},{type: types.REMOVE_ONE});
                       let newprocs=[];
@@ -180,6 +189,7 @@ export const CarShop = () => {
                         newprocs.push(it);
                       });
                       setproc(newprocs);
+                      setstate(proc.reduce((prev, next) => prev + (next.precio * next.cantidad), 0));
                   }
                   
               }
@@ -188,6 +198,9 @@ export const CarShop = () => {
             .catch(err => {
               console.log(err)
             });
+            
+            
+
     }
 
     return (
@@ -258,10 +271,6 @@ export const CarShop = () => {
 
               </tbody>
             </Table>
-            
-            
-
-            
         </div>
     )
 }
