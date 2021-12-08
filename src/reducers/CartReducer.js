@@ -1,6 +1,7 @@
 import { types } from "../types/types";
 import Axios from 'axios';
 import { Alert } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 
 export function CartReduce(state, action) {
@@ -89,6 +90,29 @@ export function CartReduce(state, action) {
             return {
 
             };
+            break;
+        case types.BUY:
+            const compra = state.state;
+            Axios.post('http://localhost:9000/cart/buy/',{idUsuario:compra.idUsuario, total: compra.acumulado})
+            .then(res =>{
+                Swal.fire({
+              
+                    icon: 'success',
+                    title: 'Has pagado $'+compra.acumulado+" pesos mexicanos.",
+                    showConfirmButton: false,
+                    timer: 2000
+                  });
+                  console.log(res);
+            }).catch(err =>{
+                Swal.fire({
+              
+                    icon: 'error',
+                    title: 'La compra no se pudo realizar',
+                    showConfirmButton: false,
+                    timer: 2000
+                  });
+                  
+            });
             break;
         default:
             return state;

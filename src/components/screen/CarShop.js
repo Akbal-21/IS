@@ -100,33 +100,39 @@ export const CarShop = () => {
     }
     const comprarCarrito=()=>{
       
-      Swal.fire({
-        title: '¿Finalizar compra?',
-        text: "Pagaras $"+acumulado,
-        icon: 'pesos mexicanos.',
-        showCancelButton: true,
-        confirmButtonColor: '#28a745',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Confirmar!',
-        cancelButtonText: '¡Cancelar!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          
+      if(proc.length > 0){
           Swal.fire({
+          title: '¿Finalizar compra?',
+          text: "Pagaras $"+acumulado,
+          icon: 'pesos mexicanos.',
+          showCancelButton: true,
+          confirmButtonColor: '#28a745',
+          cancelButtonColor: '#d33',
+          confirmButtonText: '¡Confirmar!',
+          cancelButtonText: '¡Cancelar!'
+        }).then((result) => {
+          if (result.isConfirmed) {
             
-            icon: 'success',
-            title: 'Has pagado $'+acumulado+" pesos mexicanos.",
-            showConfirmButton: false,
-            timer: 2000
-          })
-
-          history.push("/menu");
-        
-          CartReduce({state:{idUsuario}},{type:types.CLEAR});
+            
+            CartReduce({state:{idUsuario,acumulado}},{type:types.BUY});
+            history.push("/menu");
+          
+            
 
 
-        }
-      })
+          }
+        })
+      }else{
+        Swal.fire({
+              
+          icon: 'info',
+          title: 'Ingresa elementos a tu carrito',
+          showConfirmButton: false,
+          timer: 2000
+        })
+        history.push("/menu");
+      }
+
       
     }
 
